@@ -1,0 +1,220 @@
+* {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  font-size: 14px;
+}
+
+body {
+  height: 100%;
+  background-color: black;
+  color: white;
+}
+
+p {
+  margin: 0px;
+}
+
+#root {
+  height: 100%;
+}
+
+.App {
+  background-color: black;
+}
+
+#intro {
+  background-image: url(./bg.png);
+  background-size: cover;
+}
+
+.column-2-wrapper {
+  display: flex;
+  gap: 20px;
+}
+
+.title-section {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.title-section p {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 140%;
+}
+
+.wallet-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 245px;
+  padding: 32px;
+  background: #1f1f1f;
+  border: 1px solid #454545;
+  border-radius: 10px;
+}
+
+.wallet-card h3 {
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.wallet-card .sub {
+  color: #adadad;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 140%;
+}
+
+.wallet-card .sub.address {
+  text-decoration-line: underline;
+}
+
+.wallet-card .lower-wrapper-left {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.wallet-card .lower-wrapper-left .cla {
+  font-size: 36px;
+  line-height: 43px;
+}
+
+.wallet-card .lower-wrapper-left .cla b {
+  font-size: 36px;
+  line-height: 43px;
+  color: #00f0ff;
+  font-weight: 700;
+}
+
+.wallet-card .lower-wrapper-left .disconnect {
+  text-align: right;
+  text-decoration-line: underline;
+  font-size: 14px;
+  line-height: 140%;
+  color: #adadad;
+}
+
+.wallet-card .lower-wrapper-right {
+  display: flex;
+  justify-content: start;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.wallet-card .lower-wrapper-right input {
+  border: 1px solid #636363;
+  overflow: hidden;
+  border-radius: 20px;
+  padding: 8px 16px;
+  text-align: end;
+  font-size: 16px;
+  line-height: 140%;
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0);
+}
+
+.wallet-card .lower-wrapper-right span button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 8px 16px;
+  gap: 4px;
+  font-size: 16px;
+  border-radius: 20px;
+  color: #191919;
+  letter-spacing: 0%;
+  font-weight: 700;
+  background-color: #00f0ff;
+}
+
+#myCCT {
+  padding-bottom: 24px;
+}
+
+#myCCT .title-section p {
+  margin-top: 72px;
+}
+
+#myCCT .description {
+  margin-bottom: 28px;
+}
+
+.wrapper-tokens {
+  display: grid;
+  gap: 20px;
+  justify-content: space-between;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.container-nft {
+  padding: 28px 20px;
+  background: #1f1f1f;
+  border: 1px solid #333333;
+  border-radius: 10px;
+}
+
+.container-nft .wrapper-nft .title {
+  color: #909298;
+  font-size: 16px;
+  line-height: 140%;
+}
+
+.container-nft .wrapper-nft .cla-amount {
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 140%;
+  margin-bottom: 24px;
+}
+
+.container-nft .wrapper-nft .cla-amount i {
+  margin-left: 8px;
+  font-size: 14px;
+  color:#909298;
+}
+.container-nft .wrapper-nft .wrapper-button {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.container-nft .wrapper-nft .wrapper-button button {
+  width: 100%;
+  padding: 12px 0;
+  background: #343434;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 140%;
+}
+
+.container-nft .wrapper-nft .wrapper-button button.harvest {
+  color: #00f0ff;
+}
+
+.container-nft .wrapper-nft .wrapper-button button.burn {
+  color: #ff7676;
+}
+
+.wrapper-deposit .title {
+  font-size: 16px;
+  line-height: 140%;
+  color: #909298;
+  margin-right: 4px;
+}
+
+.wrapper-deposit .amount {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 140%;
+  margin-right: 4px;
+}

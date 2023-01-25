@@ -1,1 +1,24 @@
 # CLA-Convert-NFT
+
+---
+
+## Smart Contract Address
+
+---
+
+## Smart Contract Interface
+
+```solidity
+interface IClaConvertNFT {
+    function burn(uint256 tokenId) external;
+function accumulatedRewardCla(uint tokenId) external view returns (uint256);
+function totalAccumulatedRewardCla(address owner) external view returns (uint256);
+function claBalanceOf(address account) external view returns (uint256);
+function approveCla(uint256 amount) external returns (bool);
+function convertClaToCct(uint amount) external;
+function claimClaReward(uint256 tokenId) external;
+}
+
+```
+
+## CLA-Convert-NFT Front-End
