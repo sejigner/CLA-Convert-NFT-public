@@ -3,13 +3,7 @@ import KeyringContainer from "caver-js/packages/caver-wallet";
 // import CounterABI from '../abi/CounterABI.json';
 import CCTABI from "../abi/ClaConvertNFTABI.json";
 import ERC20ABI from "../abi/ERC20ABI.json";
-import {
-  ACCESS_KEY_ID,
-  SECRET_ACCESS_KEY,
-  CLA_CONVERT_NFT_ADDRESS,
-  CLAIM_TOKEN_ADDRESS,
-  CHAIN_ID,
-} from "../constants";
+import { CLA_CONVERT_NFT_ADDRESS, CLAIM_TOKEN_ADDRESS } from "../constants";
 // const option = {
 //   headers: [
 //     {
@@ -50,14 +44,16 @@ export const getCct = async (tokenId) => {
 
 export const harvest = async (tokenId) => {
   try {
-    caver.klay
+    return caver.klay
       .sendTransaction({
         type: "SMART_CONTRACT_EXECUTION",
         from: window.klaytn.selectedAddress,
         to: CLA_CONVERT_NFT_ADDRESS,
-        data: CCTContract.methods.claimClaReward(tokenId).encodeABI(),
+        data: CCTContract.methods
+          .claimClaReward(tokenId, window.klaytn.selectedAddress)
+          .encodeABI(),
         // value: "",
-        gas: "500000",
+        gas: "600000",
       })
       .on("transactionHash", (hash) => {
         console.log(hash);
@@ -84,138 +80,6 @@ export const burnCct = async (tokenId) => {
         to: CLA_CONVERT_NFT_ADDRESS,
         data: CCTContract.methods.burn(tokenId).encodeABI(),
         // value: "",
-        gas: "500000",
-      })
-      .on("transactionHash", (hash) => {
-        console.log(hash);
-      })
-      .on("receipt", (receipt) => {
-        // success
-        console.log(receipt);
-      })
-      .on("error", (e) => {
-        // failed
-        console.log(e);
-      });
-  } catch (e) {
-    console.error(e);
-  }
-};
-
-export const accumulatedReward = async (tokenId) => {
-  try {
-    return await CCTContract.methods.accumulatedRewardCla(tokenId).call();
-  } catch (e) {
-    console.error(e);
-  }
-};
-export const approveClaAndTransfer = async (amount) => {
-  try {
-    caver.klay
-      .sendTransaction({
-        type: "SMART_CONTRACT_EXECUTION",
-        from: window.klaytn.selectedAddress,
-        to: CLAIM_TOKEN_ADDRESS,
-        data: ERC20Contract.methods
-          .approve(CLA_CONVERT_NFT_ADDRESS, amount)
-          .encodeABI(),
-        // value: "",
-        gas: "500000",
-      })
-      .on("transactionHash", (hash) => {
-        console.log(hash);
-      })
-      .on("receipt", (receipt) => {
-        // success
-        console.log(receipt);
-        console.log("amount is" + amount);
-        transferClaFrom(amount);
-      })
-      .on("error", (e) => {
-        // failed
-        console.log(e);
-      });
-  } catch {}
-};
-export const approveCla = async (amount) => {
-  try {
-    caver.klay
-      .sendTransaction({
-        type: "SMART_CONTRACT_EXECUTION",
-        from: window.klaytn.selectedAddress,
-        to: CLAIM_TOKEN_ADDRESS,
-        data: ERC20Contract.methods
-          .approve(CLA_CONVERT_NFT_ADDRESS, amount)
-          .encodeABI(),
-        gas: "500000",
-      })
-      .on("transactionHash", (hash) => {
-        console.log(hash);
-      })
-      .on("receipt", (receipt) => {
-        // success
-        console.log(receipt);
-      })
-      .on("error", (e) => {
-        // failed
-        console.log(e);
-      });
-  } catch (e) {
-    console.error(e);
-  }
-};
-
-export const transferClaFrom = async (amount) => {
-  try {
-    caver.klay
-      .sendTransaction({
-        type: "SMART_CONTRACT_EXECUTION",
-        from: window.klaytn.selectedAddress,
-        to: CLAIM_TOKEN_ADDRESS,
-        data: ERC20Contract.methods
-          .transferFrom(
-            window.klaytn.selectedAddress,
-            CLA_CONVERT_NFT_ADDRESS,
-            amount
-          )
-          .encodeABI(),
-        gas: "500000",
-      })
-      .on("transactionHash", (hash) => {
-        console.log(hash);
-      })
-      .on("receipt", (receipt) => {
-        // success
-        console.log(receipt);
-      })
-      .on("error", (e) => {
-        // failed
-        console.log(e);
-      });
-  } catch (e) {
-    console.error(e);
-  }
-};
-
-export const allowance = async () => {
-  try {
-    return await ERC20Contract.methods
-      .allowance(window.klaytn.selectedAddress, CLA_CONVERT_NFT_ADDRESS)
-      .call();
-  } catch (e) {
-    console.error(e);
-  }
-};
-
-export const convertClaToCct = async (amount) => {
-  try {
-    caver.klay
-      .sendTransaction({
-        type: "SMART_CONTRACT_EXECUTION",
-        from: window.klaytn.selectedAddress,
-        to: CLA_CONVERT_NFT_ADDRESS,
-        data: CCTContract.methods.convertClaToCct(amount).encodeABI(),
-        // value: "",
         gas: "600000",
       })
       .on("transactionHash", (hash) => {
@@ -229,9 +93,64 @@ export const convertClaToCct = async (amount) => {
         // failed
         console.log(e);
       });
-  } catch (error) {
-    console.log(error);
+  } catch (e) {
+    console.error(e);
   }
+};
+
+export const getAccumulatedReward = async (tokenId) => {
+  try {
+    return await CCTContract.methods.accumulatedRewardCla(tokenId).call();
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+export const approveCla = async (amount) => {
+  return caver.klay
+    .sendTransaction({
+      type: "SMART_CONTRACT_EXECUTION",
+      from: window.klaytn.selectedAddress,
+      to: CLAIM_TOKEN_ADDRESS,
+      data: ERC20Contract.methods
+        .approve(CLA_CONVERT_NFT_ADDRESS, amount)
+        .encodeABI(),
+      gas: "500000",
+    })
+    .on("transactionHash", (hash) => {
+      console.log(hash);
+    })
+    .on("receipt", (receipt) => {
+      // success
+      console.log(receipt);
+    })
+    .on("error", (e) => {
+      // failed
+      console.log(e);
+    });
+};
+
+export const convertClaToCct = async (amount) => {
+  return caver.klay
+    .sendTransaction({
+      type: "SMART_CONTRACT_EXECUTION",
+      from: window.klaytn.selectedAddress,
+      to: CLA_CONVERT_NFT_ADDRESS,
+      data: CCTContract.methods.convertClaToCct(amount).encodeABI(),
+      // value: "",
+      gas: "800000",
+    })
+    .on("transactionHash", (hash) => {
+      console.log(hash);
+    })
+    .on("receipt", (receipt) => {
+      // success
+      console.log(receipt);
+    })
+    .on("error", (e) => {
+      // failed
+      console.log(e);
+    });
 };
 
 export const getBalance = (address) => {

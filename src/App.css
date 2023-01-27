@@ -158,29 +158,40 @@ p {
 }
 
 .container-nft {
+  width: 240px;
+  height: 248px;
   padding: 28px 20px;
   background: #1f1f1f;
   border: 1px solid #333333;
   border-radius: 10px;
 }
-
 .container-nft .wrapper-nft .title {
+  display: block;
   color: #909298;
   font-size: 16px;
   line-height: 140%;
 }
-
 .container-nft .wrapper-nft .cla-amount {
+  display: flex;
+  align-items: baseline;
+}
+
+.container-nft .wrapper-nft .cla-amount p {
+  overflow: hidden;
+  text-overflow: ellipsis;
   font-weight: 700;
+  white-space: nowrap;
   font-size: 36px;
   line-height: 140%;
   margin-bottom: 24px;
 }
 
+
+
 .container-nft .wrapper-nft .cla-amount i {
   margin-left: 8px;
   font-size: 14px;
-  color:#909298;
+  color: #909298;
 }
 .container-nft .wrapper-nft .wrapper-button {
   display: flex;
@@ -204,12 +215,15 @@ p {
 .container-nft .wrapper-nft .wrapper-button button.burn {
   color: #ff7676;
 }
-
+.wrapper-deposit {
+  display: flex;
+}
 .wrapper-deposit .title {
   font-size: 16px;
   line-height: 140%;
   color: #909298;
   margin-right: 4px;
+  white-space: nowrap;
 }
 
 .wrapper-deposit .amount {
@@ -217,4 +231,6 @@ p {
   font-size: 16px;
   line-height: 140%;
   margin-right: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

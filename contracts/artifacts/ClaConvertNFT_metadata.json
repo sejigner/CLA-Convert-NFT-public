@@ -6,7 +6,18 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "symbol",
+						"type": "string"
+					}
+				],
 				"payable": false,
 				"stateMutability": "nonpayable",
 				"type": "constructor"
@@ -197,27 +208,6 @@
 				"type": "function"
 			},
 			{
-				"constant": false,
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "amount",
-						"type": "uint256"
-					}
-				],
-				"name": "approveCla",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "",
-						"type": "bool"
-					}
-				],
-				"payable": false,
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
 				"constant": true,
 				"inputs": [
 					{
@@ -232,6 +222,21 @@
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "baseURI",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
 					}
 				],
 				"payable": false,
@@ -307,6 +312,11 @@
 						"internalType": "uint256",
 						"name": "tokenId",
 						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "recipient",
+						"type": "address"
 					}
 				],
 				"name": "claimClaReward",
@@ -371,6 +381,21 @@
 						"internalType": "bool",
 						"name": "",
 						"type": "bool"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [],
+				"name": "name",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
 					}
 				],
 				"payable": false,
@@ -496,6 +521,21 @@
 			},
 			{
 				"constant": true,
+				"inputs": [],
+				"name": "symbol",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -535,6 +575,27 @@
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "tokenURI",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
 					}
 				],
 				"payable": false,
@@ -622,7 +683,10 @@
 					},
 					"return": "uint256 representing the amount owned by the passed address"
 				},
-				"claimClaReward(uint256)": {
+				"baseURI()": {
+					"details": "Returns the base URI set via {_setBaseURI}. This will be automatically added as a preffix in {tokenURI} to each token's URI, when they are non-empty.    * _Available since v2.5.0._"
+				},
+				"claimClaReward(uint256,address)": {
 					"details": "먼저 CCT 홀더들에게 pendingCla 이자를 지분에 따라 분배하고 홀더 계정으로 CLA 이자 전송"
 				},
 				"getApproved(uint256)": {
@@ -639,6 +703,10 @@
 						"owner": "owner address which you want to query the approval of"
 					},
 					"return": "bool whether the given operator is approved by the given owner"
+				},
+				"name()": {
+					"details": "Gets the token name.",
+					"return": "string representing the token name"
 				},
 				"ownerOf(uint256)": {
 					"details": "Gets the owner of the specified token ID.",
@@ -674,6 +742,10 @@
 				"supportsInterface(bytes4)": {
 					"details": "See {IERC165-supportsInterface}.     * Time complexity O(1), guaranteed to always use less than 30 000 gas."
 				},
+				"symbol()": {
+					"details": "Gets the token symbol.",
+					"return": "string representing the token symbol"
+				},
 				"tokenByIndex(uint256)": {
 					"details": "Gets the token ID at a given index of all the tokens in this contract Reverts if the index is greater or equal to the total number of tokens.",
 					"params": {
@@ -688,6 +760,9 @@
 						"owner": "address owning the tokens list to be accessed"
 					},
 					"return": "uint256 token ID at the given index of the tokens list owned by the requested address"
+				},
+				"tokenURI(uint256)": {
+					"details": "Returns the URI for a given token ID. May return an empty string.     * If the token's URI is non-empty and a base URI was set (via {_setBaseURI}), it will be added to the token ID's URI as a prefix.     * Reverts if the token ID does not exist."
 				},
 				"totalSupply()": {
 					"details": "Gets the total amount of tokens stored by the contract.",
@@ -708,16 +783,13 @@
 				"accumulatedRewardCla(uint256)": {
 					"notice": "(쓰기 작업 없는 단순 조회 용도) 컨트랙트 상태 변수 _distributedRewardPerToken 업데이트 없이 현재까지 쌓인 CLA 이자 반환(본 컨트랙트와 claDistributor 컨트랙트 각각의 이자를 합산)"
 				},
-				"approveCla(uint256)": {
-					"notice": "CCT 컨트랙트의 CLA 전송 승인 "
-				},
 				"burn(uint256)": {
 					"notice": "CCT 소각"
 				},
 				"claBalanceOf(address)": {
 					"notice": "CLA 토큰 잔고 반환"
 				},
-				"claimClaReward(uint256)": {
+				"claimClaReward(uint256,address)": {
 					"notice": "Claims CLA reward entitled to NFT"
 				},
 				"convertClaToCct(uint256)": {
@@ -791,6 +863,20 @@
 				"dweb:/ipfs/Qmf9rVfj6LreiE7NHkkT1S7eLbSQDDY1gKd9XWERx2AN7W"
 			]
 		},
+		"@openzeppelin/contracts/token/ERC721/ERC721Full.sol": {
+			"keccak256": "0x307231237999e19b618a03e7ecff1cee2a189dd019ebd203e5e43a63a7ac8aa3",
+			"urls": [
+				"bzz-raw://9a169446f024a24c3e5146cbeefea6be3bbbe9ba836f98f9d0c64af9f10773c4",
+				"dweb:/ipfs/QmWibincTepM31suKeF6bd3shbPGjc9E7uULaXQBY1eNX5"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC721/ERC721Metadata.sol": {
+			"keccak256": "0xe454aab4894511c610fb28e63e212608004921c10dfbffaf0b0e18a2c3b204eb",
+			"urls": [
+				"bzz-raw://cbb33c4aa1ba8470e389a79702b1b0450c03acd0e9471ed3ae5d566a958d36a4",
+				"dweb:/ipfs/QmXryp8Ncftr8WYt7vWwoFQVKnbxtQ7dQBHzfzgWWYGisK"
+			]
+		},
 		"@openzeppelin/contracts/token/ERC721/IERC721.sol": {
 			"keccak256": "0x680c11bc8173eef7d5db843baaf64ce499476de2c172f6aea631dbee54bcd2e6",
 			"urls": [
@@ -803,6 +889,13 @@
 			"urls": [
 				"bzz-raw://e23af54444d2dbfae58895339eb7b189e1ba5d0b7abde63716e7ef7da23b2fde",
 				"dweb:/ipfs/QmZva7dE1SMd1yyizzc6ivSoBXXwpNveLV7iFNATNpq68Y"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC721/IERC721Metadata.sol": {
+			"keccak256": "0x2b2b99dc7fe8fcd1f9427d00822b99cbc683dc21f5dd7532bd7e2281fd2c2ca2",
+			"urls": [
+				"bzz-raw://a8024c00e34efaf328f9592e76823c79f25fa0f6006bdf4a1e7fea204afd4773",
+				"dweb:/ipfs/QmZns9jTr7843njq3J2iL2LLoWXK5mdzN1bDGd9GL3ahhD"
 			]
 		},
 		"@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol": {
@@ -820,10 +913,10 @@
 			]
 		},
 		"contracts/ClaConvertNFT.sol": {
-			"keccak256": "0xd89e430e327cc43785c77cdf86f4c56fe6eef64d86f1bcff5d1972823449c087",
+			"keccak256": "0x938a1a392ee49fd269db2a94cd881ddacc56b2e21ae09775fc7e1ce4a1f8fdd8",
 			"urls": [
-				"bzz-raw://5b6fdbaec8c597872185e718b642a10e00d8f250aeda5641b946139064e73de6",
-				"dweb:/ipfs/QmQRs1s1LPZV4t7aCUXqxXSKkAhGHNCSXiQEroN5hJu7uY"
+				"bzz-raw://f0ef1c914e4be7b3498c0de798ada90649c380e283083515dd4b5c5c22e508f1",
+				"dweb:/ipfs/QmdnZhPtbd5c3EJiCecdbYhV99yhVQC8B7sDtoJC4AGaDK"
 			]
 		},
 		"contracts/interfaces/IClaContract.sol": {

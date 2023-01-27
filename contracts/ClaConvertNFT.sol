@@ -1,12 +1,12 @@
 pragma solidity ^0.5.0;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721Enumerable.sol";
+import "@openzeppelin/contracts/token/ERC721/ERC721Full.sol";
 import "./interfaces/IClaContract.sol";
 import "./interfaces/IClaDistributor.sol";
 import "./interfaces/IClsToken.sol";
 
-contract ClaConvertNFT is ERC721Enumerable {
-  constructor() ERC721Enumerable() public {
+contract ClaConvertNFT is ERC721Full {
+  constructor(string memory name, string memory symbol) ERC721Full(name, symbol) public {
   }
 
   using SafeMath for uint256;
@@ -61,8 +61,8 @@ contract ClaConvertNFT is ERC721Enumerable {
     CCT memory _cct = ccts[tokenId];
     require(_cct.endDay <= _getDay());
     require(ownerOf(tokenId) == msg.sender);
-    
-    claimClaReward(tokenId);
+    address owner = ownerOf(tokenId);
+    claimClaReward(tokenId, owner);
     clsToken.burn(msg.sender, MULTIPLE_FOR_180DAYS, _cct.claAmount );
     _burn(tokenId);
 
@@ -113,14 +113,6 @@ contract ClaConvertNFT is ERC721Enumerable {
     return claContract.balanceOf(account);
   }
 
-  /// @notice CCT 컨트랙트의 CLA 전송 승인 
-  function approveCla(uint256 amount) public returns (bool) {
-    (bool check, bytes memory data) = address(CLA_CONTRACT).delegatecall(abi.encodeWithSignature("approve(address, uint256)",address(this),amount));
-
-    (bool returnBool) = abi.decode(data, (bool));
-    return returnBool;
-  }
-
   /// @notice CLA 토큰을 EOA에서 CCT 컨트랙트로 전송하고, 해당 토큰을 CLS 토큰 컨트랙트에 180일 예치
   function convertClaToCct(uint amount) public {
     require(amount > 0);
@@ -128,6 +120,7 @@ contract ClaConvertNFT is ERC721Enumerable {
     claContract.transferFrom(msg.sender, address(this), amount);
     // Update all tokens reward and lock CLA in ClsToken contract
     _updateAllTokensReward();
+    claContract.approve(CLS_TOKEN, amount);
     clsToken.mint(address(this), amount, MULTIPLE_FOR_180DAYS);
     // Mint CCT
     _mintCCT(msg.sender, amount);
@@ -137,11 +130,13 @@ contract ClaConvertNFT is ERC721Enumerable {
   * @notice Claims CLA reward entitled to NFT
   * @dev 먼저 CCT 홀더들에게 pendingCla 이자를 지분에 따라 분배하고 홀더 계정으로 CLA 이자 전송
   */
-  function claimClaReward(uint256 tokenId) public {
+  function claimClaReward(uint256 tokenId, address recipient) public {
     require(msg.sender == ownerOf(tokenId));
     _updateAllTokensReward();
     require(_distributedRewardPerToken[tokenId] > 0);
-    claContract.transferFrom(address(this), msg.sender, _distributedRewardPerToken[tokenId]);
+    uint amount = _distributedRewardPerToken[tokenId];
+    claContract.approve(recipient, amount);
+    claContract.transferFrom(address(this), recipient, amount);
     _distributedRewardPerToken[tokenId] = 0;
   }
   /// @notice 유닉스 시간 일자
