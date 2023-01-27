@@ -315,7 +315,7 @@
 					},
 					{
 						"internalType": "address",
-						"name": "recipient",
+						"name": "owner",
 						"type": "address"
 					}
 				],
@@ -913,10 +913,10 @@
 			]
 		},
 		"contracts/ClaConvertNFT.sol": {
-			"keccak256": "0x938a1a392ee49fd269db2a94cd881ddacc56b2e21ae09775fc7e1ce4a1f8fdd8",
+			"keccak256": "0x8df3e4c46b0002928c9f6788715f6ec3103c8bfa1a670066e3c834a2d259c861",
 			"urls": [
-				"bzz-raw://f0ef1c914e4be7b3498c0de798ada90649c380e283083515dd4b5c5c22e508f1",
-				"dweb:/ipfs/QmdnZhPtbd5c3EJiCecdbYhV99yhVQC8B7sDtoJC4AGaDK"
+				"bzz-raw://86dacc73989190a95205f261107f573fe73126f1c966212565c3953c24d8a14e",
+				"dweb:/ipfs/QmNX5uxvXU3fKuQ2kp1eP9NJaYwHVd3CEhMRAWKdqYFZ3M"
 			]
 		},
 		"contracts/interfaces/IClaContract.sol": {

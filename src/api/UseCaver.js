@@ -53,7 +53,7 @@ export const harvest = async (tokenId) => {
           .claimClaReward(tokenId, window.klaytn.selectedAddress)
           .encodeABI(),
         // value: "",
-        gas: "600000",
+        gas: "800000",
       })
       .on("transactionHash", (hash) => {
         console.log(hash);

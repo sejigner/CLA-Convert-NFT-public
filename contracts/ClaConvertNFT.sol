@@ -61,8 +61,7 @@ contract ClaConvertNFT is ERC721Full {
     CCT memory _cct = ccts[tokenId];
     require(_cct.endDay <= _getDay());
     require(ownerOf(tokenId) == msg.sender);
-    address owner = ownerOf(tokenId);
-    claimClaReward(tokenId, owner);
+    claimClaReward(tokenId, msg.sender);
     clsToken.burn(msg.sender, MULTIPLE_FOR_180DAYS, _cct.claAmount );
     _burn(tokenId);
 
@@ -130,13 +129,13 @@ contract ClaConvertNFT is ERC721Full {
   * @notice Claims CLA reward entitled to NFT
   * @dev 먼저 CCT 홀더들에게 pendingCla 이자를 지분에 따라 분배하고 홀더 계정으로 CLA 이자 전송
   */
-  function claimClaReward(uint256 tokenId, address recipient) public {
+  function claimClaReward(uint256 tokenId, address owner) public {
     require(msg.sender == ownerOf(tokenId));
     _updateAllTokensReward();
     require(_distributedRewardPerToken[tokenId] > 0);
     uint amount = _distributedRewardPerToken[tokenId];
-    claContract.approve(recipient, amount);
-    claContract.transferFrom(address(this), recipient, amount);
+    claContract.approve(owner, amount);
+    claContract.transferFrom(address(this), owner, amount);
     _distributedRewardPerToken[tokenId] = 0;
   }
   /// @notice 유닉스 시간 일자

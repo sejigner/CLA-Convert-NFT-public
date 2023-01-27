@@ -3,38 +3,11 @@ import KaikasLogo from "./assets/kaikas.png";
 import CctLogo from "./assets/cct.png";
 import Intro from "./components/Intro.js";
 import Main from "./components/Main.js";
-import NFT from "./components/NFT.js";
-import Caver from "caver-js";
-import {
-  getClaBalance,
-  getBalance,
-  readCount,
-  setCount,
-  fetchCardsOf,
-  getCct,
-  getCctId,
-  getCctBalance,
-  approveCla,
-  convertClaToCct,
-} from "./api/UseCaver";
-// import * as KlipAPI from "./api/UseKlip";
+import { getClaBalance } from "./api/UseCaver";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import "./market.css";
-// import { MARKET_CONTRACT_ADDRESS } from "./constants";
-
-// function onPressButton(balance) {
-//   console.log("hi");
-// }
-// const onPressButton2 = (_balance, _setBalance) => {
-//   _setBalance(_balance);
-// };
-const DEFAULT_QR_CODE = "DEFAULT";
-const DEFAULT_ADDRESS = "0x00000000000000000000000000000";
-const caver = new Caver(window.klaytn);
-
 function App() {
-  const [nfts, setNfts] = useState([]);
   const [myAddress, setMyAddress] = useState();
 
   // UI
@@ -78,13 +51,6 @@ function App() {
     if (myAddress !== undefined) {
       setClaBalance(await getClaBalance(myAddress));
     }
-  };
-
-  const setCla = (amount) => {
-    this.setState({ claAmount: amount });
-    console.log(
-      "typeof:" + typeof this.state.claAmount + " value:" + this.state.claAmount
-    );
   };
 
   useEffect(() => {

@@ -6,9 +6,6 @@ import {
   getCct,
 } from "../api/UseCaver.js";
 
-import Caver from "caver-js";
-
-const caver = new Caver(window.klaytn);
 const aDayinSecond = 86400;
 const decimal = 10 ** -18;
 
@@ -75,8 +72,8 @@ const NFT = ({ tokenId }) => {
             <button
               className="burn"
               type="button"
-              onClick={() => {
-                this.burnCct(tokenId);
+              onClick={async () => {
+                await burnCct(tokenId);
               }}
             >
               burn

@@ -5,11 +5,8 @@ import NFT from "./NFT.js";
 import {
   approveCla,
   convertClaToCct,
-  getClaBalance,
   getCctBalance,
-  approveClaAndTransfer,
   getCctId,
-  getCct,
 } from "../api/UseCaver";
 
 const caver = new Caver(window.klaytn);
