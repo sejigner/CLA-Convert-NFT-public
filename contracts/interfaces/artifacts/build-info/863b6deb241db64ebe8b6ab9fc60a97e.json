@@ -1,0 +1,660 @@
+{
+	"id": "863b6deb241db64ebe8b6ab9fc60a97e",
+	"_format": "hh-sol-build-info-1",
+	"solcVersion": "0.5.17",
+	"solcLongVersion": "0.5.17+commit.d19bba13",
+	"input": {
+		"language": "Solidity",
+		"sources": {
+			"contracts/interfaces/IClsToken.sol": {
+				"content": "pragma solidity ^0.5.0;\r\n\r\ninterface IClsToken {\r\n    /// @dev Lock CLAs and mint CLSs.\r\n    /// @param to CLS Receiver.\r\n    /// @param amount Amount of CLA to lock.\r\n    /// @param multiple Multiple of CLA to lock.\r\n    function mint(\r\n        address to,\r\n        uint256 amount,\r\n        uint8 multiple\r\n    ) external;\r\n\r\n    /// @dev Unlock CLAs and burn CLSs.\r\n    /// @param to CLA receiver.\r\n    /// @param multiple Multiple of CLA.\r\n    /// @param amount Amount Of CLA to unlock.\r\n    function burn(\r\n        address to,\r\n        uint8 multiple,\r\n        uint256 amount\r\n    ) external;\r\n\r\n    /// @dev Return unlockable amount of cla and locked list of cla\r\n    function lockedClaInfo(address account, uint8 multiple)\r\n        external\r\n        view\r\n        returns (\r\n            uint256 unlockableAmount,\r\n            uint256 lockedAmount,\r\n            uint256[] memory lockedAmounts,\r\n            uint32[] memory endDays\r\n        );\r\n}\r\n"
+			}
+		},
+		"settings": {
+			"optimizer": {
+				"enabled": false,
+				"runs": 200
+			},
+			"outputSelection": {
+				"*": {
+					"": [
+						"ast"
+					],
+					"*": [
+						"abi",
+						"metadata",
+						"devdoc",
+						"userdoc",
+						"storageLayout",
+						"evm.legacyAssembly",
+						"evm.bytecode",
+						"evm.deployedBytecode",
+						"evm.methodIdentifiers",
+						"evm.gasEstimates",
+						"evm.assembly"
+					]
+				}
+			}
+		}
+	},
+	"output": {
+		"contracts": {
+			"contracts/interfaces/IClsToken.sol": {
+				"IClsToken": {
+					"abi": [
+						{
+							"constant": false,
+							"inputs": [
+								{
+									"internalType": "address",
+									"name": "to",
+									"type": "address"
+								},
+								{
+									"internalType": "uint8",
+									"name": "multiple",
+									"type": "uint8"
+								},
+								{
+									"internalType": "uint256",
+									"name": "amount",
+									"type": "uint256"
+								}
+							],
+							"name": "burn",
+							"outputs": [],
+							"payable": false,
+							"stateMutability": "nonpayable",
+							"type": "function"
+						},
+						{
+							"constant": true,
+							"inputs": [
+								{
+									"internalType": "address",
+									"name": "account",
+									"type": "address"
+								},
+								{
+									"internalType": "uint8",
+									"name": "multiple",
+									"type": "uint8"
+								}
+							],
+							"name": "lockedClaInfo",
+							"outputs": [
+								{
+									"internalType": "uint256",
+									"name": "unlockableAmount",
+									"type": "uint256"
+								},
+								{
+									"internalType": "uint256",
+									"name": "lockedAmount",
+									"type": "uint256"
+								},
+								{
+									"internalType": "uint256[]",
+									"name": "lockedAmounts",
+									"type": "uint256[]"
+								},
+								{
+									"internalType": "uint32[]",
+									"name": "endDays",
+									"type": "uint32[]"
+								}
+							],
+							"payable": false,
+							"stateMutability": "view",
+							"type": "function"
+						},
+						{
+							"constant": false,
+							"inputs": [
+								{
+									"internalType": "address",
+									"name": "to",
+									"type": "address"
+								},
+								{
+									"internalType": "uint256",
+									"name": "amount",
+									"type": "uint256"
+								},
+								{
+									"internalType": "uint8",
+									"name": "multiple",
+									"type": "uint8"
+								}
+							],
+							"name": "mint",
+							"outputs": [],
+							"payable": false,
+							"stateMutability": "nonpayable",
+							"type": "function"
+						}
+					],
+					"devdoc": {
+						"methods": {
+							"burn(address,uint8,uint256)": {
+								"details": "Unlock CLAs and burn CLSs.",
+								"params": {
+									"amount": "Amount Of CLA to unlock.",
+									"multiple": "Multiple of CLA.",
+									"to": "CLA receiver."
+								}
+							},
+							"lockedClaInfo(address,uint8)": {
+								"details": "Return unlockable amount of cla and locked list of cla"
+							},
+							"mint(address,uint256,uint8)": {
+								"details": "Lock CLAs and mint CLSs.",
+								"params": {
+									"amount": "Amount of CLA to lock.",
+									"multiple": "Multiple of CLA to lock.",
+									"to": "CLS Receiver."
+								}
+							}
+						}
+					},
+					"evm": {
+						"assembly": "",
+						"bytecode": {
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"deployedBytecode": {
+							"linkReferences": {},
+							"object": "",
+							"opcodes": "",
+							"sourceMap": ""
+						},
+						"gasEstimates": null,
+						"legacyAssembly": null,
+						"methodIdentifiers": {
+							"burn(address,uint8,uint256)": "a29b3f5b",
+							"lockedClaInfo(address,uint8)": "e4363cca",
+							"mint(address,uint256,uint8)": "6112e8ac"
+						}
+					},
+					"metadata": "{\"compiler\":{\"version\":\"0.5.17+commit.d19bba13\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint8\",\"name\":\"multiple\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"burn\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"},{\"internalType\":\"uint8\",\"name\":\"multiple\",\"type\":\"uint8\"}],\"name\":\"lockedClaInfo\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"unlockableAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"lockedAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256[]\",\"name\":\"lockedAmounts\",\"type\":\"uint256[]\"},{\"internalType\":\"uint32[]\",\"name\":\"endDays\",\"type\":\"uint32[]\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint8\",\"name\":\"multiple\",\"type\":\"uint8\"}],\"name\":\"mint\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{\"burn(address,uint8,uint256)\":{\"details\":\"Unlock CLAs and burn CLSs.\",\"params\":{\"amount\":\"Amount Of CLA to unlock.\",\"multiple\":\"Multiple of CLA.\",\"to\":\"CLA receiver.\"}},\"lockedClaInfo(address,uint8)\":{\"details\":\"Return unlockable amount of cla and locked list of cla\"},\"mint(address,uint256,uint8)\":{\"details\":\"Lock CLAs and mint CLSs.\",\"params\":{\"amount\":\"Amount of CLA to lock.\",\"multiple\":\"Multiple of CLA to lock.\",\"to\":\"CLS Receiver.\"}}}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"contracts/interfaces/IClsToken.sol\":\"IClsToken\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/interfaces/IClsToken.sol\":{\"keccak256\":\"0xcb29b79eb6def3829929a9f7648316579aaef708b8d38dbab8291cbbb4e03fdb\",\"urls\":[\"bzz-raw://c4547f96a1e66d4702f8a4665feeff78df75df030033e5a73680724fb3b315de\",\"dweb:/ipfs/QmaEjfr1CSm59axi1gyRhxYotwDhRtNMWdYuMTgoi2tHKm\"]}},\"version\":1}",
+					"storageLayout": {
+						"storage": [],
+						"types": null
+					},
+					"userdoc": {
+						"methods": {}
+					}
+				}
+			}
+		},
+		"sources": {
+			"contracts/interfaces/IClsToken.sol": {
+				"ast": {
+					"absolutePath": "contracts/interfaces/IClsToken.sol",
+					"exportedSymbols": {
+						"IClsToken": [
+							37
+						]
+					},
+					"id": 38,
+					"nodeType": "SourceUnit",
+					"nodes": [
+						{
+							"id": 1,
+							"literals": [
+								"solidity",
+								"^",
+								"0.5",
+								".0"
+							],
+							"nodeType": "PragmaDirective",
+							"src": "0:23:0"
+						},
+						{
+							"baseContracts": [],
+							"contractDependencies": [],
+							"contractKind": "interface",
+							"documentation": null,
+							"fullyImplemented": false,
+							"id": 37,
+							"linearizedBaseContracts": [
+								37
+							],
+							"name": "IClsToken",
+							"nodeType": "ContractDefinition",
+							"nodes": [
+								{
+									"body": null,
+									"documentation": "@dev Lock CLAs and mint CLSs.\n @param to CLS Receiver.\n @param amount Amount of CLA to lock.\n @param multiple Multiple of CLA to lock.",
+									"id": 10,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "mint",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 8,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 3,
+												"name": "to",
+												"nodeType": "VariableDeclaration",
+												"scope": 10,
+												"src": "246:10:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 2,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "246:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"value": null,
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 5,
+												"name": "amount",
+												"nodeType": "VariableDeclaration",
+												"scope": 10,
+												"src": "267:14:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 4,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "267:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"value": null,
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 7,
+												"name": "multiple",
+												"nodeType": "VariableDeclaration",
+												"scope": 10,
+												"src": "292:14:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint8",
+													"typeString": "uint8"
+												},
+												"typeName": {
+													"id": 6,
+													"name": "uint8",
+													"nodeType": "ElementaryTypeName",
+													"src": "292:5:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint8",
+														"typeString": "uint8"
+													}
+												},
+												"value": null,
+												"visibility": "internal"
+											}
+										],
+										"src": "235:78:0"
+									},
+									"returnParameters": {
+										"id": 9,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "322:0:0"
+									},
+									"scope": 37,
+									"src": "222:101:0",
+									"stateMutability": "nonpayable",
+									"superFunction": null,
+									"visibility": "external"
+								},
+								{
+									"body": null,
+									"documentation": "@dev Unlock CLAs and burn CLSs.\n @param to CLA receiver.\n @param multiple Multiple of CLA.\n @param amount Amount Of CLA to unlock.",
+									"id": 19,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "burn",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 17,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 12,
+												"name": "to",
+												"nodeType": "VariableDeclaration",
+												"scope": 19,
+												"src": "519:10:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 11,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "519:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"value": null,
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 14,
+												"name": "multiple",
+												"nodeType": "VariableDeclaration",
+												"scope": 19,
+												"src": "540:14:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint8",
+													"typeString": "uint8"
+												},
+												"typeName": {
+													"id": 13,
+													"name": "uint8",
+													"nodeType": "ElementaryTypeName",
+													"src": "540:5:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint8",
+														"typeString": "uint8"
+													}
+												},
+												"value": null,
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 16,
+												"name": "amount",
+												"nodeType": "VariableDeclaration",
+												"scope": 19,
+												"src": "565:14:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 15,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "565:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"value": null,
+												"visibility": "internal"
+											}
+										],
+										"src": "508:78:0"
+									},
+									"returnParameters": {
+										"id": 18,
+										"nodeType": "ParameterList",
+										"parameters": [],
+										"src": "595:0:0"
+									},
+									"scope": 37,
+									"src": "495:101:0",
+									"stateMutability": "nonpayable",
+									"superFunction": null,
+									"visibility": "external"
+								},
+								{
+									"body": null,
+									"documentation": "@dev Return unlockable amount of cla and locked list of cla",
+									"id": 36,
+									"implemented": false,
+									"kind": "function",
+									"modifiers": [],
+									"name": "lockedClaInfo",
+									"nodeType": "FunctionDefinition",
+									"parameters": {
+										"id": 24,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 21,
+												"name": "account",
+												"nodeType": "VariableDeclaration",
+												"scope": 36,
+												"src": "696:15:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_address",
+													"typeString": "address"
+												},
+												"typeName": {
+													"id": 20,
+													"name": "address",
+													"nodeType": "ElementaryTypeName",
+													"src": "696:7:0",
+													"stateMutability": "nonpayable",
+													"typeDescriptions": {
+														"typeIdentifier": "t_address",
+														"typeString": "address"
+													}
+												},
+												"value": null,
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 23,
+												"name": "multiple",
+												"nodeType": "VariableDeclaration",
+												"scope": 36,
+												"src": "713:14:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint8",
+													"typeString": "uint8"
+												},
+												"typeName": {
+													"id": 22,
+													"name": "uint8",
+													"nodeType": "ElementaryTypeName",
+													"src": "713:5:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint8",
+														"typeString": "uint8"
+													}
+												},
+												"value": null,
+												"visibility": "internal"
+											}
+										],
+										"src": "695:33:0"
+									},
+									"returnParameters": {
+										"id": 35,
+										"nodeType": "ParameterList",
+										"parameters": [
+											{
+												"constant": false,
+												"id": 26,
+												"name": "unlockableAmount",
+												"nodeType": "VariableDeclaration",
+												"scope": 36,
+												"src": "793:24:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 25,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "793:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"value": null,
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 28,
+												"name": "lockedAmount",
+												"nodeType": "VariableDeclaration",
+												"scope": 36,
+												"src": "832:20:0",
+												"stateVariable": false,
+												"storageLocation": "default",
+												"typeDescriptions": {
+													"typeIdentifier": "t_uint256",
+													"typeString": "uint256"
+												},
+												"typeName": {
+													"id": 27,
+													"name": "uint256",
+													"nodeType": "ElementaryTypeName",
+													"src": "832:7:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_uint256",
+														"typeString": "uint256"
+													}
+												},
+												"value": null,
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 31,
+												"name": "lockedAmounts",
+												"nodeType": "VariableDeclaration",
+												"scope": 36,
+												"src": "867:30:0",
+												"stateVariable": false,
+												"storageLocation": "memory",
+												"typeDescriptions": {
+													"typeIdentifier": "t_array$_t_uint256_$dyn_memory_ptr",
+													"typeString": "uint256[]"
+												},
+												"typeName": {
+													"baseType": {
+														"id": 29,
+														"name": "uint256",
+														"nodeType": "ElementaryTypeName",
+														"src": "867:7:0",
+														"typeDescriptions": {
+															"typeIdentifier": "t_uint256",
+															"typeString": "uint256"
+														}
+													},
+													"id": 30,
+													"length": null,
+													"nodeType": "ArrayTypeName",
+													"src": "867:9:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_array$_t_uint256_$dyn_storage_ptr",
+														"typeString": "uint256[]"
+													}
+												},
+												"value": null,
+												"visibility": "internal"
+											},
+											{
+												"constant": false,
+												"id": 34,
+												"name": "endDays",
+												"nodeType": "VariableDeclaration",
+												"scope": 36,
+												"src": "912:23:0",
+												"stateVariable": false,
+												"storageLocation": "memory",
+												"typeDescriptions": {
+													"typeIdentifier": "t_array$_t_uint32_$dyn_memory_ptr",
+													"typeString": "uint32[]"
+												},
+												"typeName": {
+													"baseType": {
+														"id": 32,
+														"name": "uint32",
+														"nodeType": "ElementaryTypeName",
+														"src": "912:6:0",
+														"typeDescriptions": {
+															"typeIdentifier": "t_uint32",
+															"typeString": "uint32"
+														}
+													},
+													"id": 33,
+													"length": null,
+													"nodeType": "ArrayTypeName",
+													"src": "912:8:0",
+													"typeDescriptions": {
+														"typeIdentifier": "t_array$_t_uint32_$dyn_storage_ptr",
+														"typeString": "uint32[]"
+													}
+												},
+												"value": null,
+												"visibility": "internal"
+											}
+										],
+										"src": "778:168:0"
+									},
+									"scope": 37,
+									"src": "673:274:0",
+									"stateMutability": "view",
+									"superFunction": null,
+									"visibility": "external"
+								}
+							],
+							"scope": 38,
+							"src": "27:923:0"
+						}
+					],
+					"src": "0:952:0"
+				},
+				"id": 0
+			}
+		}
+	}
+}

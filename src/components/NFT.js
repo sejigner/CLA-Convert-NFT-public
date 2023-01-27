@@ -1,6 +1,8 @@
 import React from "react";
 import { harvest, burnCct, accumulatedReward } from "../api/UseCaver.js";
 
+const aDayinSecond = 86400;
+
 class NFT extends React.Component {
   constructor(props) {
     super(props);
@@ -25,8 +27,10 @@ class NFT extends React.Component {
 
   render() {
     const { claAmount, endDay, tokenId } = this.props;
-    const isBurnable = (endDay) => {
-      return Math.floor(Date.now() / 1000) > endDay;
+    const isBurnable = () => {
+      return (
+        Math.floor(Date.now() / 1000 / aDayinSecond) > parseInt(endDay, 10)
+      );
     };
 
     return (
@@ -52,7 +56,7 @@ class NFT extends React.Component {
             >
               harvest
             </button>
-            {isBurnable(endDay) && (
+            {isBurnable() && (
               <button
                 className="burn"
                 type="button"

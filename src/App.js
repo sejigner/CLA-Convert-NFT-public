@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
-import logo from "./logo.svg";
-import QRCode from "qrcode.react";
-import KaikasLogo from "./kaikas_logo_asset/png/symbol_multi_solid.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome, faWallet, faPlus } from "@fortawesome/free-solid-svg-icons";
+import KaikasLogo from "./assets/kaikas.png";
+import CctLogo from "./assets/cct.png";
 import Intro from "./components/Intro.js";
 import Main from "./components/Main.js";
 import {
@@ -89,9 +86,16 @@ function App() {
     }
   };
 
+  const convertUnit = (cla) => {
+    return parseInt(cla, 10) / (10**18);
+  };
+
   const updateClaBalance = async () => {
     try {
-      const balance = await getClaBalance(account);
+      let balance = await getClaBalance(account);
+      console.log(typeof balance);
+      balance = convertUnit(balance);
+      console.log(balance);
       setClaBalance(balance);
     } catch (e) {
       console.error(e);
@@ -188,9 +192,7 @@ function App() {
             alignItems: "center",
           }}
         >
-          <p style={{ fontSize: "16px", fontWeight: "700", margin: "0px" }}>
-            CLA Convert NFT
-          </p>
+          <img src={CctLogo} width="153px" alt="logo" />
           {!connect && (
             <button
               type="button"
@@ -217,9 +219,13 @@ function App() {
       </div>
       {/* Hero */}
       {connect ? (
-        <Main account={myAddress} claBalance={claBalance} />
+        <Main
+          account={myAddress}
+          claBalance={claBalance}
+          setConnect={setConnect}
+        />
       ) : (
-        <Intro />
+        <Intro connectToKaikas={connectToKaikas} />
       )}
       {}
       {/* 모달 */}

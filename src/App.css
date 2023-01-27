@@ -97,19 +97,19 @@ p {
   font-weight: 700;
 }
 
-.wallet-card .lower-wrapper-left .disconnect {
-  text-align: right;
-  text-decoration-line: underline;
-  font-size: 14px;
-  line-height: 140%;
-  color: #adadad;
-}
-
 .wallet-card .lower-wrapper-right {
   display: flex;
   justify-content: start;
   align-items: flex-end;
   gap: 12px;
+}
+
+.wallet-card .disconnect {
+  text-align: right;
+  text-decoration-line: underline;
+  font-size: 14px;
+  line-height: 140%;
+  color: #adadad;
 }
 
 .wallet-card .lower-wrapper-right input {

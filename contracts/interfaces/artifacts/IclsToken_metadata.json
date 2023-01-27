@@ -1,0 +1,149 @@
+{
+	"compiler": {
+		"version": "0.5.17+commit.d19bba13"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint8",
+						"name": "multiple",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "burn",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"internalType": "uint8",
+						"name": "multiple",
+						"type": "uint8"
+					}
+				],
+				"name": "lockedClaInfo",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "unlockableAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "lockedAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "lockedAmounts",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint32[]",
+						"name": "endDays",
+						"type": "uint32[]"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint8",
+						"name": "multiple",
+						"type": "uint8"
+					}
+				],
+				"name": "mint",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"methods": {
+				"burn(address,uint8,uint256)": {
+					"details": "Unlock CLAs and burn CLSs.",
+					"params": {
+						"amount": "Amount Of CLA to unlock.",
+						"multiple": "Multiple of CLA.",
+						"to": "CLA receiver."
+					}
+				},
+				"lockedClaInfo(address,uint8)": {
+					"details": "Return unlockable amount of cla and locked list of cla"
+				},
+				"mint(address,uint256,uint8)": {
+					"details": "Lock CLAs and mint CLSs.",
+					"params": {
+						"amount": "Amount of CLA to lock.",
+						"multiple": "Multiple of CLA to lock.",
+						"to": "CLS Receiver."
+					}
+				}
+			}
+		},
+		"userdoc": {
+			"methods": {}
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/interfaces/IClsToken.sol": "IClsToken"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/interfaces/IClsToken.sol": {
+			"keccak256": "0xcb29b79eb6def3829929a9f7648316579aaef708b8d38dbab8291cbbb4e03fdb",
+			"urls": [
+				"bzz-raw://c4547f96a1e66d4702f8a4665feeff78df75df030033e5a73680724fb3b315de",
+				"dweb:/ipfs/QmaEjfr1CSm59axi1gyRhxYotwDhRtNMWdYuMTgoi2tHKm"
+			]
+		}
+	},
+	"version": 1
+}

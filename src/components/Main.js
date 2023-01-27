@@ -1,14 +1,21 @@
 import React from "react";
-import KaikasLogo from "../kaikas_logo_asset/png/symbol_multi_solid.png";
+import Caver from "caver-js";
+import KaikasLogo from "../assets/kaikas.png";
 import NFT from "./NFT.js";
+import { ethers } from "ethers";
 import {
   approveCla,
-  convertClaToCCT,
+  convertClaToCct,
   getClaBalance,
   getCctBalance,
+  transferClaFrom,
+  approveClaAndTransfer,
   getCctId,
   getCct,
+  allowance,
 } from "../api/UseCaver";
+
+const caver = new Caver(window.klaytn);
 
 class Main extends React.Component {
   constructor(props) {
@@ -19,6 +26,7 @@ class Main extends React.Component {
     this.onClickDeposit = this.onClickDeposit.bind(this);
     this.updateCctList = this.updateCctList.bind(this);
     this.renderNFTs = this.renderNFTs.bind(this);
+    this.allowance = this.getAllowance.bind(this);
 
     this.state = {
       claAmount: 0,
@@ -27,37 +35,50 @@ class Main extends React.Component {
     };
   }
 
+  async getAllowance() {
+    console.log(await allowance());
+  }
   componentDidMount() {
     this.updateCctList();
+    this.getBalance();
+    this.getAllowance();
   }
 
   async getBalance() {
-    const balance = await getClaBalance(this.props.account);
+    let balance = await getClaBalance(this.props.account);
     this.setState({ claBalance: balance });
   }
   setCla(amount) {
     this.setState({ claAmount: amount });
+    console.log(
+      "typeof:" + typeof this.state.claAmount + " value:" + this.state.claAmount
+    );
   }
   async onClickDeposit() {
     try {
-      const amount = this.state.claAmount;
-      let response = await approveCla(amount);
-      console.log(response);
-      if (response.status) {
-        response = await convertClaToCCT(amount);
-        console.log(response);
-        // TODO: response로부터 정상적인 이벤트 출력 확인
-        if (response.status) {
-          this.updateCctList(response.tokenId, response.claAmount, response.endDay);
-          // 민팅 완료 안내 및 nft 리스트 UI 업데이트
-        }
-      }
+      const amount = caver.utils.toPeb(this.state.claAmount, "KLAY");
+      console.log("amount : " + amount);
+      let response = await transferClaFrom(amount);
+      // let response = await approveClaAndTransfer(amount);
+      console.log("approve & transfer: " + response);
+      // if (response.status) {
+      // 코드 수정 필요 convertClaToCct 메서드에서 transferFrom 삭제
+      //   response = await convertClaToCct(amount);
+      //   console.log(response);
+      //   // TODO: response로부터 정상적인 이벤트 출력 확인
+      //   if (response.status === true) {
+      //     this.updateCctList(
+      //       response.tokenId,
+      //       response.claAmount,
+      //       response.endDay
+      //     );
+      //     // 민팅 완료 안내 및 nft 리스트 UI 업데이트
+      //   }
+      // }
     } catch (err) {
       console.error(err);
     }
   }
-
-
 
   async updateCctList(tokenId, claAmount, endDay) {
     try {
@@ -84,7 +105,14 @@ class Main extends React.Component {
   }
 
   async renderNFTs(cct) {
-    return <NFT key={cct.key} claAmount={cct.claAmount} endDay={cct.endDay} tokenId={cct.tokenId} />;
+    return (
+      <NFT
+        key={cct.key}
+        claAmount={cct.claAmount}
+        endDay={cct.endDay}
+        tokenId={cct.tokenId}
+      />
+    );
   }
 
   render() {
@@ -115,10 +143,14 @@ class Main extends React.Component {
                 <p className="cla">
                   CLA <b>{this.props.claBalance}</b>
                 </p>
-                <p className="disconnect" type="button">
-                  지갑 연결 끊기
-                </p>
               </div>
+              <p
+                className="disconnect"
+                type="button"
+                onClick={() => this.props.setConnect(false)}
+              >
+                지갑 연결 끊기
+              </p>
             </div>
             <div className="wallet-card">
               <div>
@@ -131,8 +163,7 @@ class Main extends React.Component {
               </div>
               <div className="lower-wrapper-right">
                 <input
-                  type="number"
-                  placeholder="CLA"
+                  placeholder="0.000 CLA"
                   onChange={(e) => {
                     this.setCla(e.target.value);
                   }}
@@ -141,7 +172,9 @@ class Main extends React.Component {
                   <button
                     title="deposit"
                     className="deposit"
-                    onClick={this.onClickDeposit}
+                    onClick={() => {
+                      this.onClickDeposit();
+                    }}
                   >
                     예치하기
                     <i className="fa-solid fa-angle-right"></i>
@@ -161,7 +194,9 @@ class Main extends React.Component {
           </p>
           <div className="wrapper-tokens">
             {this.state.nfts.map(this.renderNFTs)}
-            <NFT claAmount="24" endDay="5352523" tokenId="0" />
+            {/* Dummies 23.01.25 기준 19382 days in Epoch time  */}
+            <NFT claAmount="24" endDay="19382" tokenId="0" />
+            <NFT claAmount="602" endDay="19381" tokenId="1" />
           </div>
         </section>
       </div>

@@ -1,0 +1,91 @@
+{
+	"compiler": {
+		"version": "0.5.17+commit.d19bba13"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"constant": false,
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					}
+				],
+				"name": "harvest",
+				"outputs": [],
+				"payable": false,
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"constant": true,
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"name": "pendingCla",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "pending",
+						"type": "uint256"
+					}
+				],
+				"payable": false,
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"methods": {
+				"harvest(address)": {
+					"details": "Harvest proceeds for transaction sender to `to`.",
+					"params": {
+						"to": "Receiver of CLA rewards."
+					}
+				},
+				"pendingCla(address)": {
+					"params": {
+						"user": "Address of user."
+					},
+					"return": "Pending CLA reward for a given user."
+				}
+			}
+		},
+		"userdoc": {
+			"methods": {
+				"pendingCla(address)": {
+					"notice": "View function to see pending CLA."
+				}
+			}
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/interfaces/IClaDistributor.sol": "IClaDistributor"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/interfaces/IClaDistributor.sol": {
+			"keccak256": "0x39834bfd5f8181fbed402ff9d644390eef141673fc4ab49856b12c1832200126",
+			"urls": [
+				"bzz-raw://d957e415e75f48c48c8bba2386e7b82070d560c3159be9180705800e4ffbe0a4",
+				"dweb:/ipfs/QmSsDPAdiFjsNcRAmsHY3BVbYrrsX7ecYmRJcj9dyQfcoJ"
+			]
+		}
+	},
+	"version": 1
+}

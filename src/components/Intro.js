@@ -1,7 +1,12 @@
 import React from "react";
-import KaikasLogo from "../kaikas_logo_asset/png/symbol_multi_solid.png";
+import KaikasLogo from "../assets/kaikas.png";
+import connectToKaikas from "../App.js";
 
 class Intro extends React.Component {
+  componentDidMount() {
+    this.connectToKaikas = connectToKaikas.bind(this);
+  }
+
   render() {
     return (
       <section
@@ -35,6 +40,9 @@ class Intro extends React.Component {
             </p>
             <button
               type="button"
+              onClick={() => {
+                this.props.connectToKaikas();
+              }}
               style={{
                 width: "fit-content",
                 height: "76px",
@@ -51,12 +59,7 @@ class Intro extends React.Component {
                 fontWeight: "700",
               }}
             >
-              <img
-                src={KaikasLogo}
-                alt=""
-                width="36px"
-                height="36px"
-              />
+              <img src={KaikasLogo} alt="" width="36px" height="36px" />
               지갑 연결하기
             </button>
           </div>
