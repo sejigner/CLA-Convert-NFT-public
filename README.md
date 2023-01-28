@@ -2,7 +2,7 @@
 
 ## Smart Contract Address
 
-0x3b16FD875B373Da4aE91231E3A00C3964c8cE556
+0x5fd363522940860014f1B9C531450e6781F07b99
 
 ## Smart Contract Interface
 
@@ -29,6 +29,7 @@ interface IClaConvertNFT {
 
 https://63d3f39f163b330a303c3b26--subtle-taffy-00dd51.netlify.app/
 
-## 해결하지 못한 문제
+## 수정이 필요한 사항
 
-harvest 요청 시 모든 절차는 정상적으로 실행되나 마지막 CLA 컨트랙트에서 CLA를 유저에게 전송하는 단계에서 계속해서 revert됨
+- harvest 요청 시 claimClaReward 메서드의 모든 절차는 정상적으로 실행되나 마지막 CLA 컨트랙트에서 CLA를 유저에게 전송하는 단계에서 계속해서 revert됨 (transfer amount exceeds allowance)
+- ClaConvertNFT.sol - burn 메서드 내부 \_burn 메서드의 첫번째 인자 msg.sender 누락

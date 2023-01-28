@@ -913,10 +913,10 @@
 			]
 		},
 		"contracts/ClaConvertNFT.sol": {
-			"keccak256": "0x8df3e4c46b0002928c9f6788715f6ec3103c8bfa1a670066e3c834a2d259c861",
+			"keccak256": "0x5a8787a69e2749a6efbb955d051e213ce49b846a6e4417cb4295de75f89c73b1",
 			"urls": [
-				"bzz-raw://86dacc73989190a95205f261107f573fe73126f1c966212565c3953c24d8a14e",
-				"dweb:/ipfs/QmNX5uxvXU3fKuQ2kp1eP9NJaYwHVd3CEhMRAWKdqYFZ3M"
+				"bzz-raw://fb5b2db2391ddb0b5c66529e0fcb8d42d2aecdee8882c7a74b95d13b226b54f7",
+				"dweb:/ipfs/QmaRoHWw7SC8wFk3DWpkpiAzMrweCzRAbB8Weg7seudzYg"
 			]
 		},
 		"contracts/interfaces/IClaContract.sol": {

@@ -63,7 +63,7 @@ contract ClaConvertNFT is ERC721Full {
     require(ownerOf(tokenId) == msg.sender);
     claimClaReward(tokenId, msg.sender);
     clsToken.burn(msg.sender, MULTIPLE_FOR_180DAYS, _cct.claAmount );
-    _burn(tokenId);
+    _burn(msg.sender, tokenId);
 
     emit BurnedCCT( tokenId, _cct.claAmount);
   }
@@ -134,8 +134,8 @@ contract ClaConvertNFT is ERC721Full {
     _updateAllTokensReward();
     require(_distributedRewardPerToken[tokenId] > 0);
     uint amount = _distributedRewardPerToken[tokenId];
-    claContract.approve(owner, amount);
-    claContract.transferFrom(address(this), owner, amount);
+    
+    claContract.transfer(owner, amount);
     _distributedRewardPerToken[tokenId] = 0;
   }
   /// @notice 유닉스 시간 일자
