@@ -27,9 +27,8 @@ interface IClaConvertNFT {
 
 ## CLA-Convert-NFT Front-End
 
-https://63d3f39f163b330a303c3b26--subtle-taffy-00dd51.netlify.app/
+https://claconvertnft.netlify.app/
 
 ## 수정이 필요한 사항
 
 - harvest 요청 시 claimClaReward 메서드의 모든 절차는 정상적으로 실행되나 마지막 CLA 컨트랙트에서 CLA를 유저에게 전송하는 단계에서 계속해서 revert됨 (transfer amount exceeds allowance)
-- ClaConvertNFT.sol - burn 메서드 내부 \_burn 메서드의 첫번째 인자 msg.sender 누락
