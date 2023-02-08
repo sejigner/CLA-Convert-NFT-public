@@ -9,6 +9,35 @@ CCT는 크롬 익스텐션인 Kaikas 지갑을 이용해서 사용이 가능합�
 
 ## Project Structure
 ```
+contracts
+ ┣ artifacts
+ ┃ ┣ build-info
+ ┃ ┃ ┣ 23d8cdfba12ba64b3728d8abfb13c7f7.json
+ ┃ ┃ ┣ 8a790b6d453c64bb243b88f6064828f8.json
+ ┃ ┃ ┗ cb55833debb604636c69e7422aa5eecf.json
+ ┃ ┣ ClaConvertNFT.json
+ ┃ ┣ ClaConvertNFT_metadata.json
+ ┃ ┣ SafeMath.json
+ ┃ ┗ SafeMath_metadata.json
+ ┣ interfaces
+ ┃ ┣ artifacts
+ ┃ ┃ ┣ build-info
+ ┃ ┃ ┃ ┣ 863b6deb241db64ebe8b6ab9fc60a97e.json
+ ┃ ┃ ┃ ┣ 86c18607278ffa8d302e66050779e5f6.json
+ ┃ ┃ ┃ ┗ d543a1f8bce344c31bb4ff1f66d318df.json
+ ┃ ┃ ┣ IClaContract.json
+ ┃ ┃ ┣ IClaContract_metadata.json
+ ┃ ┃ ┣ IClaDistributor.json
+ ┃ ┃ ┣ IClaDistributor_metadata.json
+ ┃ ┃ ┣ IclsToken.json
+ ┃ ┃ ┗ IclsToken_metadata.json
+ ┃ ┣ IClaContract.sol
+ ┃ ┣ IClaConvertNFT.sol
+ ┃ ┣ IClaDistributor.sol
+ ┃ ┗ IClsToken.sol
+ ┣ ClaConvertNFT.sol
+ ┗ SafeMath.sol
+ ┃
 src
  ┣ abi
  ┃ ┣ ClaConvertNFTABI.json # CCT 자체 contract ABI
