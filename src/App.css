@@ -29,7 +29,7 @@ p {
 }
 
 #intro {
-  background-image: url(./bg.png);
+  background-image: url(./assets/bg.png);
   background-size: cover;
 }
 

@@ -6,7 +6,7 @@ import Main from "./components/Main.js";
 import { getClaBalance } from "./api/UseCaver";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import "./market.css";
+
 function App() {
   const [myAddress, setMyAddress] = useState();
 
