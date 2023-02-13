@@ -12,33 +12,13 @@ CCT는 크롬 익스텐션인 Kaikas 지갑을 이용해서 사용이 가능합�
 ## Project Structure
 ```
 contracts
- ┣ artifacts
- ┃ ┣ build-info
- ┃ ┃ ┣ 23d8cdfba12ba64b3728d8abfb13c7f7.json
- ┃ ┃ ┣ 8a790b6d453c64bb243b88f6064828f8.json
- ┃ ┃ ┗ cb55833debb604636c69e7422aa5eecf.json
- ┃ ┣ ClaConvertNFT.json
- ┃ ┣ ClaConvertNFT_metadata.json
- ┃ ┣ SafeMath.json
- ┃ ┗ SafeMath_metadata.json
  ┣ interfaces
- ┃ ┣ artifacts
- ┃ ┃ ┣ build-info
- ┃ ┃ ┃ ┣ 863b6deb241db64ebe8b6ab9fc60a97e.json
- ┃ ┃ ┃ ┣ 86c18607278ffa8d302e66050779e5f6.json
- ┃ ┃ ┃ ┗ d543a1f8bce344c31bb4ff1f66d318df.json
- ┃ ┃ ┣ IClaContract.json
- ┃ ┃ ┣ IClaContract_metadata.json
- ┃ ┃ ┣ IClaDistributor.json
- ┃ ┃ ┣ IClaDistributor_metadata.json
- ┃ ┃ ┣ IclsToken.json
- ┃ ┃ ┗ IclsToken_metadata.json
- ┃ ┣ IClaContract.sol
- ┃ ┣ IClaConvertNFT.sol
- ┃ ┣ IClaDistributor.sol
- ┃ ┗ IClsToken.sol
- ┣ ClaConvertNFT.sol
- ┗ SafeMath.sol
+ ┃ ┣ IClaContract.sol # ClaimSwap과 상호작용하여 CLA 토큰을 다루는 인터페이스
+ ┃ ┣ IClaConvertNFT.sol # CLA-CONVERT-NFT 자체 Contract 메서드의 인터페이스
+ ┃ ┣ IClaDistributor.sol # ClaimSwap에 예치한 CLA 토큰에 대한 이자를 다루는 인터페이스
+ ┃ ┗ IClsToken.sol # ClaimSwap에 토큰을 예치하고, 보상으로 제공되는 CLS 토큰을 다루는 인터페이스
+ ┣ ClaConvertNFT.sol # CLA-CONVERT-NFT 자체 Contract
+ ┗ SafeMath.sol # 연산으로 인한 Overflow, Underflow를 방지해주는 Solidity 라이브러리
  ┃
 src
  ┣ abi
