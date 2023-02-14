@@ -17,7 +17,7 @@ function App() {
   let account = "";
   const connectToKaikas = async () => {
     try {
-      if (typeof window.klaytn !== "undefined") {
+      if (typeof window.klaytn !== "undefined") {   
         const klaytn = window.klaytn;
         const accounts = await klaytn.enable();
         account = accounts[0];
@@ -25,6 +25,8 @@ function App() {
         setConnect(true);
         updateClaBalance();
         console.log("account status: " + account);
+      } else {
+        alert('Kaikas 지갑이 필요합니다. 크롬 익스텐션을 설치해주세요.')
       }
     } catch (e) {
       console.log(e);

@@ -7,9 +7,11 @@ CLA는 일괄적으로 180일간 예치할 수 있으며, 실시간으로 쌓여
 CCT는, CLA 예치 시 받는 CLS 토큰이 전송이 불가능한 것과 달리 전송이 가능한 NFT입니다. 따라서 예치한 CLA 토큰과 예치 기간 내 쌓인 이자 CLA를 유동화가 가능합니다.
 
 ## 서비스 이용 방법
+
 CCT는 크롬 익스텐션인 Kaikas 지갑을 이용해서 사용이 가능합니다. [사이트 이동하기](https://claconvertnft.netlify.app/)
 
 ## Project Structure
+
 ```
 contracts
  ┣ interfaces
@@ -44,6 +46,12 @@ src
  ┗ index.js # ReactDOM을 통한 루트 렌더링
 ```
 
+## Userflow
+
+![](img/deposit.png)![](img/reward.png)![](img/withdraw.png)
+
+## 
+
 ## Smart Contract Address
 
 0x5fd363522940860014f1B9C531450e6781F07b99
@@ -66,7 +74,6 @@ interface IClaConvertNFT {
   function convertClaToCct(uint amount) external;
   function claimClaReward(uint256 tokenId, address owner) external;
 }
-
 ```
 
 ## CLA-Convert-NFT Front-End
