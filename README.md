@@ -1,4 +1,4 @@
-![](https://img.shields.io/badge/frontend-success)![](https://img.shields.io/badge/react-18.2.0-success) ![](https://img.shields.io/badge/classnames-2.3.2-success)
+![](https://img.shields.io/badge/npm-8.1.0-success) ![](https://img.shields.io/badge/openzeppelin/contracts-2.5.1-success) ![](https://img.shields.io/badge/react-17.0.2-success) ![](https://img.shields.io/badge/caver-js-1.6.1-success) ![](https://img.shields.io/badge/solidity-0.5.0-success)
 
 # CLA-Convert-NFT
 
